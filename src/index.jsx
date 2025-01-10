@@ -7,7 +7,7 @@ import * as Sentry from '@sentry/browser';
 Sentry.init({
   dsn: import.meta.env.VITE_PUBLIC_SENTRY_DSN,
   environment: import.meta.env.VITE_PUBLIC_APP_ENV,
-  integrations: [Sentry.browserTracingIntegration()],
+  integrations: [Sentry.BrowserTracingIntegration()],
   initialScope: {
     tags: {
       type: 'frontend',
@@ -37,6 +37,10 @@ if (import.meta.env.VITE_PUBLIC_APP_ENV !== 'development') {
   script.setAttribute('data-website-id', import.meta.env.VITE_PUBLIC_UMAMI_WEBSITE_ID);
   document.head.appendChild(script);
 }
+
+// Strategic Logging
+console.log('App initialized');
+console.info('Fetching initial data');
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
